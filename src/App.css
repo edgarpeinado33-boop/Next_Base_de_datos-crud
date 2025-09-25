@@ -7,20 +7,24 @@
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  background-color: #f4f6f9;
-  color: #333;
-  line-height: 1.6;
+  background: #f5f7fb;
+  color: #2c2c2c;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .App {
   min-height: 100vh;
-  min-width: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Navbar */
 .navbar {
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
   padding: 0 30px;
   position: sticky;
   top: 0;
@@ -28,11 +32,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  animation: slideDown 0.4s ease;
 }
 
 .navbar-brand a {
   text-decoration: none;
-  color: #007bff;
+  color: #fff;
 }
 
 .navbar-brand h1 {
@@ -40,6 +45,7 @@ body {
   margin: 0;
   padding: 20px 0;
   font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
 .navbar-nav {
@@ -51,7 +57,7 @@ body {
 
 .navbar-nav li a {
   text-decoration: none;
-  color: #555;
+  color: #f1f1f1;
   font-weight: 500;
   padding: 10px 18px;
   border-radius: 8px;
@@ -60,44 +66,51 @@ body {
 
 .navbar-nav li a:hover,
 .navbar-nav li.active a {
-  background: #007bff;
-  color: #fff;
+  background: #fff;
+  color: #007bff;
+  font-weight: 600;
 }
 
 /* Main Content */
 main {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 50px 20px;
+  flex: 1;
 }
 
 /* Page Container */
 .page-container {
   background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.07);
   padding: 30px;
   color: #333;
+  transition: transform 0.3s ease;
+}
+.page-container:hover {
+  transform: translateY(-3px);
 }
 
 /* Hero Section */
 .hero-section {
-  background: linear-gradient(135deg, #007bff, #0056b3);
+  background: linear-gradient(135deg, #007bff, #00c6ff);
   color: white;
   padding: 90px 40px;
-  border-radius: 16px;
+  border-radius: 18px;
   margin-bottom: 60px;
   text-align: center;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
 }
 
 .hero-section h1 {
-  font-size: 3rem;
+  font-size: 3.2rem;
   margin-bottom: 20px;
   font-weight: 700;
 }
 
 .hero-section p {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   margin-bottom: 40px;
   opacity: 0.95;
 }
@@ -123,8 +136,8 @@ main {
 }
 
 .primary-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
 }
 
 .secondary-btn {
@@ -156,39 +169,86 @@ main {
 .feature-card {
   background: #ffffff;
   padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .feature-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 }
 
 .feature-card h3 {
   color: #007bff;
   margin-bottom: 15px;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
-/* Users Page */
-.user-item {
+/* Listados de datos (Usuarios, Cargos, etc.) */
+.user-list, .cargo-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Más ancho */
+  gap: 30px;
+  margin-top: 30px;
+  width: 100%;
+  max-width: 95%; /* Ajusta al ancho de la página */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.user-item, .cargo-item {
   background: #fff;
-  padding: 25px;
-  border-radius: 12px;
+  padding: 35px;
+  border-radius: 16px;
+  border: 1px solid #eaeaea;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s, box-shadow 0.25s;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  min-height: 240px;
+  font-size: 1.05rem;
+  width: 100%;
+}
+
+.user-item:hover, .cargo-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.12);
+}
+
+/* Headers de listas */
+.user-header, .cargo-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  border: 1px solid #eaeaea;
-  transition: transform 0.2s, box-shadow 0.2s;
+  align-items: center;
+  margin-bottom: 25px;
 }
 
-.user-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+.user-header h2, .cargo-header h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #007bff;
 }
 
+/* Botón crear */
+.user-header .btn, .cargo-header .btn {
+  background: #007bff;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.user-header .btn:hover, .cargo-header .btn:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Botones de acciones */
 .user-actions button, 
 .view-btn, .edit-btn, .delete-btn {
   padding: 8px 16px;
@@ -196,10 +256,9 @@ main {
   border-radius: 8px;
   font-size: 14px;
   font-weight: 600;
-  transition: all 0.2s;
+  transition: all 0.25s;
 }
 
-/* Botones */
 .view-btn { background: #17a2b8; color: white; }
 .view-btn:hover { background: #138496; }
 
@@ -210,14 +269,21 @@ main {
 .delete-btn:hover { background: #c82333; }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .user-list, .cargo-list {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
+}
+
 @media (max-width: 768px) {
   .navbar-nav {
     flex-direction: column;
     gap: 12px;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.95);
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    backdrop-filter: blur(6px);
   }
   .hero-section {
     padding: 60px 20px;
@@ -225,4 +291,13 @@ main {
   .hero-section h1 {
     font-size: 2.2rem;
   }
+  .user-list, .cargo-list {
+    grid-template-columns: 1fr; /* Una columna en móviles */
+  }
+}
+
+/* Animations */
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
