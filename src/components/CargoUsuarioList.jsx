@@ -5,14 +5,14 @@ const CargoUsuarioList = ({ cargosUsuarios, onDelete, loading }) => {
     if (loading) return <div>Loading...</div>;
 
     return (
-        <div className="cargo-usuario-page">
-            <div className="cargo-usuario-header">
+        <div className="user-page">
+            <div className="user-header">
                 <h2>Lista de Cargos de Usuarios ({cargosUsuarios.length})</h2>
                 <Link to="/cargos_usuarios/create" className="btn btn-primary">
                     Asignar Nuevo Cargo
                 </Link>
             </div>
-            <div className="cargo-usuario-list">
+            <div className="user-list">
                 {cargosUsuarios.length === 0 ? (
                     <p>No hay cargos asignados.</p>
                 ) : (
