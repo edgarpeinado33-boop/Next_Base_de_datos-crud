@@ -43,6 +43,9 @@ function Navbar() {
         <li className={`nav-item ${location.pathname === "/tickeos/create" ? "active" : ""}`}>
           <Link to="/tickeos/create" className="nav-link">Create Tickeo</Link>
         </li>
+        <li className={`nav-item ${location.pathname === "/user_queries" ? "active" : ""}`}>
+          <Link to="/user_queries" className="nav-link">User Queries</Link>
+        </li>
       </ul>
     </nav>
   );
