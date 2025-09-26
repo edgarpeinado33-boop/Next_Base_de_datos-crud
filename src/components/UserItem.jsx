@@ -1,6 +1,9 @@
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const UserItem = ({ usuario, onDelete }) => {
+const UserItem = ({ usuario }) => {
+    
+    const hiddenPassword = "*".repeat(usuario.password?.length || 0);
+
     return (
         <div className="user-item">     
             <div className="user-details">
@@ -8,6 +11,8 @@ const UserItem = ({ usuario, onDelete }) => {
                 <p><strong>Nombre:</strong> {usuario.nombre}</p>
                 <p><strong>Edad:</strong> {usuario.edad}</p>
                 <p><strong>Email:</strong> {usuario.email}</p>
+                <p><strong>Username:</strong> {usuario.username}</p>
+                <p><strong>Password:</strong> {hiddenPassword}</p>
             </div>
             <div className="user-actions">
                 <Link to={`/users/edit/${usuario.id}`} className="btn btn-secondary">Editar</Link>
